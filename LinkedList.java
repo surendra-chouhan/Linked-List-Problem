@@ -1,5 +1,7 @@
 package myLinkedList;
 
+import java.util.List;
+
 public class LinkedList<T> {
 	
 	class Node<T> {
@@ -145,6 +147,26 @@ public class LinkedList<T> {
 		previous.next = newNode;
 	}
 	
+	public void deleteAfterGivenNode(T key) {
+		Node<T> temp = head;
+		Node<T> previous = null;
+		
+		if(temp != head && temp.data == key) {
+			head = temp.next;
+			return;
+		}
+		
+		while(temp != null && temp.data != key) {
+			previous = temp;
+			temp = temp.next;
+		}
+		
+		if(temp == null) {
+			return;
+		}
+		previous.next = temp.next;
+	}
+	
 	public void show() {
 		Node<T> current = head;
 		
@@ -170,6 +192,10 @@ public class LinkedList<T> {
 		
 		System.out.println("Inserting Element after 30");
 		list.insertAfterGivenNode(list.head.next,40);
+		list.show();
+		
+		System.out.println("After Deleting Element 40 ");
+		list.deleteAfterGivenNode(40);
 		list.show();
 	}
 }
