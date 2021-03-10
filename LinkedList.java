@@ -4,7 +4,7 @@ public class LinkedList<T> {
 	
 	class Node<T> {
 		T data;
-		Node next;
+		Node<T> next;
 		
 		public Node(T data) {
 			this.data = data;
@@ -135,6 +135,16 @@ public class LinkedList<T> {
 		}
 	}
 	
+	public void insertAfterGivenNode(Node<T> previous, T data) {
+		if (previous == null) {
+			System.out.println("Previous Node cannot be null");
+			return;
+		}
+		Node<T> newNode = new Node<T>(data);
+		newNode.next = previous.next;
+		previous.next = newNode;
+	}
+	
 	public void show() {
 		Node<T> current = head;
 		
@@ -154,10 +164,12 @@ public class LinkedList<T> {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		
 		list.addNode(56);
-		list.addNode(30);
 		list.addNode(70);
+		list.insertAtMiddle(30,1);
 		list.show();
 		
-		list.searchNode(30);
+		System.out.println("Inserting Element after 30");
+		list.insertAfterGivenNode(list.head.next,40);
+		list.show();
 	}
 }
