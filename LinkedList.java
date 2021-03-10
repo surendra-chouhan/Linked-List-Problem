@@ -12,11 +12,11 @@ public class LinkedList<T> {
 		}
 	}
 	
-	public Node head = null;
-	public Node tail = null;
+	public Node<T> head = null;
+	public Node<T> tail = null;
 	
 	public void addNode(T data) {
-		Node newNode = new Node(data);
+		Node<T> newNode = new Node<T>(data);
 		
 		if(head == null) {
 			head = newNode;
@@ -29,20 +29,20 @@ public class LinkedList<T> {
 	}
 	
 	public void insertAtFirst(T data) {
-		Node newNode1 = new Node(data);
+		Node<T> newNode1 = new Node<T>(data);
 		if(head == null) {
 			head = newNode1;
 			tail = newNode1;
 		}
 		else {
-			Node node1 = head;
+			Node<T> node1 = head;
 			head = newNode1;
 			head.next = node1;
 		}
 	}
 	
 	public void insertAtLast(T data) {
-		Node newNode = new Node(data);
+		Node<T> newNode = new Node<T>(data);
 		if (head == null) {
 			head = newNode;
 			tail = newNode;
@@ -53,8 +53,28 @@ public class LinkedList<T> {
 		}
 	}
 	
-	public void show() {
+	public Node<T> insertAtMiddle(T data, int position) {
+		Node<T> newNode = new Node<T>(data);
+		newNode.data = data;
 		Node current = head;
+		Node previous = null;
+		int i = 0;
+		while(i < position) {
+			previous = current;
+			current = current.next;
+			i++;
+		}
+		newNode.next = current;
+		
+		if(previous != null) {
+			previous.next = newNode;
+			return head;
+		}
+		return newNode;
+	}
+	
+	public void show() {
+		Node<T> current = head;
 		
 		if(head == null) {
 			System.out.println("List is Empty");
@@ -69,10 +89,10 @@ public class LinkedList<T> {
 	}
 	
 	public static void main(String[] args) {
-		LinkedList list = new LinkedList();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		list.insertAtLast(56);
-		list.insertAtLast(30);
 		list.insertAtLast(70);
+		list.insertAtMiddle(30,1);
 		list.show();
 	}
 }
