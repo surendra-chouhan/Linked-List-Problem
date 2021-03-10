@@ -28,6 +28,19 @@ public class LinkedList {
 		}
 	}
 	
+	public void insertAtFirst(int data) {
+		Node newNode1 = new Node(data);
+		if(head == null) {
+			head = newNode1;
+			tail = newNode1;
+		}
+		else {
+			Node node1 = head;
+			head = newNode1;
+			head.next = node1;
+		}
+	}
+	
 	public void show() {
 		Node current = head;
 		
@@ -45,9 +58,9 @@ public class LinkedList {
 	
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
-		list.addNode(56);
-		list.addNode(30);
-		list.addNode(70);
+		list.insertAtFirst(70);
+		list.insertAtFirst(30);
+		list.insertAtFirst(56);
 		list.show();
 	}
 }
