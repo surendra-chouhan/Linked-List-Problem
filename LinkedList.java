@@ -1,12 +1,12 @@
 package myLinkedList;
 
-public class LinkedList {
+public class LinkedList<T> {
 	
-	class Node {
-		int data;
+	class Node<T> {
+		T data;
 		Node next;
 		
-		public Node(int data) {
+		public Node(T data) {
 			this.data = data;
 			this.next = null;
 		}
@@ -15,7 +15,7 @@ public class LinkedList {
 	public Node head = null;
 	public Node tail = null;
 	
-	public void addNode(int data) {
+	public void addNode(T data) {
 		Node newNode = new Node(data);
 		
 		if(head == null) {
@@ -28,7 +28,7 @@ public class LinkedList {
 		}
 	}
 	
-	public void insertAtFirst(int data) {
+	public void insertAtFirst(T data) {
 		Node newNode1 = new Node(data);
 		if(head == null) {
 			head = newNode1;
@@ -38,6 +38,18 @@ public class LinkedList {
 			Node node1 = head;
 			head = newNode1;
 			head.next = node1;
+		}
+	}
+	
+	public void insertAtLast(T data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
+		}
+		else {
+			tail.next = newNode;
+			tail = newNode;
 		}
 	}
 	
@@ -58,9 +70,9 @@ public class LinkedList {
 	
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
-		list.insertAtFirst(70);
-		list.insertAtFirst(30);
-		list.insertAtFirst(56);
+		list.insertAtLast(56);
+		list.insertAtLast(30);
+		list.insertAtLast(70);
 		list.show();
 	}
 }
