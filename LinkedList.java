@@ -73,6 +73,21 @@ public class LinkedList<T> {
 		return newNode;
 	}
 	
+	public void popFirstElement() {
+		if (head == null) {
+			System.out.println("List is Empty");
+			return;
+		}
+		else {
+			if (head != tail) {
+				head = head.next;
+			}
+			else {
+				head = tail = null;
+			}
+		}
+	}
+	
 	public void show() {
 		Node<T> current = head;
 		
@@ -90,9 +105,14 @@ public class LinkedList<T> {
 	
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<Integer>();
-		list.insertAtLast(56);
-		list.insertAtLast(70);
-		list.insertAtMiddle(30,1);
+		System.out.println("Before Deleting First Element ");
+		list.addNode(56);
+		list.addNode(30);
+		list.addNode(70);
+		list.show();
+		
+		System.out.println("After Deleting First Element ");
+		list.popFirstElement();
 		list.show();
 	}
 }
