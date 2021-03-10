@@ -56,8 +56,8 @@ public class LinkedList<T> {
 	public Node<T> insertAtMiddle(T data, int position) {
 		Node<T> newNode = new Node<T>(data);
 		newNode.data = data;
-		Node current = head;
-		Node previous = null;
+		Node<T> current = head;
+		Node<T> previous = null;
 		int i = 0;
 		while(i < position) {
 			previous = current;
@@ -88,6 +88,26 @@ public class LinkedList<T> {
 		}
 	}
 	
+	public void popLastElement() {
+		if (head == null) {
+			System.out.println("List is Empty");
+			return;
+		}
+		else {
+			if (head != tail) {
+				Node<T> current = head;
+				while(current.next != tail) {
+					current = current.next;
+				}
+				tail = current;
+				tail.next = null;
+			}
+			else {
+				head = tail = null;
+			}
+		}
+	}
+	
 	public void show() {
 		Node<T> current = head;
 		
@@ -105,14 +125,14 @@ public class LinkedList<T> {
 	
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<Integer>();
-		System.out.println("Before Deleting First Element ");
+		System.out.println("Before Deleting Last Element ");
 		list.addNode(56);
 		list.addNode(30);
 		list.addNode(70);
 		list.show();
 		
-		System.out.println("After Deleting First Element ");
-		list.popFirstElement();
+		System.out.println("After Deleting Last Element ");
+		list.popLastElement();
 		list.show();
 	}
 }
