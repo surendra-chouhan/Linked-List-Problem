@@ -2,7 +2,7 @@ package myLinkedList;
 
 import java.util.List;
 
-public class LinkedList<T> {
+public class LinkedList<T extends Comparable<T>> {
 	
 	class Node<T> {
 		T data;
@@ -167,6 +167,30 @@ public class LinkedList<T> {
 		previous.next = temp.next;
 	}
 	
+	public void sortList() {
+		Node current = head;
+		Node index = null;
+		T temp;
+		
+		if(head == null) {
+			return;
+		}
+		else {
+			while(current != null) {
+				index = current.next;
+				while(index != null) {
+					if(((Comparable<T>) current.data).compareTo((T) index.data) > 0) {
+						temp = (T) current.data;
+						current.data = index.data;
+						index.data = temp;
+					}
+					index = index.next;
+				}
+				current = current.next;
+			}
+		}
+	}
+	
 	public void show() {
 		Node<T> current = head;
 		
@@ -194,8 +218,8 @@ public class LinkedList<T> {
 		list.insertAfterGivenNode(list.head.next,40);
 		list.show();
 		
-		System.out.println("After Deleting Element 40 ");
-		list.deleteAfterGivenNode(40);
+		System.out.println("After Sorting the list is : ");
+		list.sortList();
 		list.show();
 	}
 }
